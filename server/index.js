@@ -3,10 +3,15 @@ const http = require('http');
 const { Server } = require('socket.io');
 const cors = require('cors');
 
+require('dotenv').config();
+
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: { origin: '*' }
+  cors: { 
+    origin: process.env.CORS_ORIGIN,
+    methods: ['GET', 'POST']
+  }
 });
 
 io.on('connection', (socket) => {
@@ -24,6 +29,6 @@ io.on('connection', (socket) => {
 });
 
 server.listen(3001, () => {
-  console.log('Server running on port 3001');
+  console.log(`\nServer running on: http://localhost:3001\n`);
 });
 
