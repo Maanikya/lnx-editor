@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { io } from 'socket.io-client'
 import { useParams } from 'react-router-dom'
 
-const socket = io("http://localhost:3001");
+const socket = io(import.meta.env.VITE_BACKEND_URL || "http://localhost:3001");
 
 function App() {
   const { id } = useParams();
